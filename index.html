@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Portfolio</title>
+
+    <style media="screen">
+      .main{
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loading">
+      loading
+    </div>
+    <div class="main" id="mainContainer" hidden>
+      <img id="profileImg" height="100" width="100"  alt="My profile photo">
+      <h2 id="fullName">Dev Raj Adhikari</h2>
+      <p id="bio">Programming for love and fun</p>
+      <h5 id="followers"></h5>
+      <p>Check me on <a id="githubLink">GitHub</a> </p>
+
+    </div>
+<script type="text/javascript">
+  fetch("https://api.github.com/users/adhikaridev")
+  .then(response => response.json())
+  .then(function(data){
+    console.log(data)
+
+    let followersCount = data['followers']
+    let followersInfo = `I have been followed by ${followersCount} people on GitHub.`
+
+    document.getElementById('profileImg').src = data['avatar_url']
+    document.getElementById('fullName').textContent = data['name']
+    document.getElementById('bio').textContent = data['bio']
+    document.getElementById('followers').textContent = followersInfo
+    document.getElementById('githubLink').href = data['html_url']
+
+    document.getElementById('mainContainer').hidden = false
+    document.getElementById('loading').hidden = true
+
+
+  })
+</script>
+  </body>
+</html>
