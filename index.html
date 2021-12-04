@@ -14,76 +14,7 @@
       }
     </style>
   </head>
-  <body>
-    <div id="loading">
-      loading
-    </div>
-    <div class="main" id="mainContainer" hidden>
-      <img id="profileImg" height="100" width="100"  alt="My profile photo">
-      <h2 id="fullName"></h2>
-      <p id="bio"></p>
-      <h5 id="followers"></h5>
-      <p>Check me on <a id="githubLink">GitHub</a> </p>
-      <p>No. of repos: <span id="num_of_repos"></span> </p>
-      <h3>My Projects</h3>
-      <p id="repositories"></p>
-
-    </div>
-<script type="text/javascript">
-  fetch("https://api.github.com/users/adhikaridev")
-  .then(response => response.json())
-  .then(function(data){
-    console.log(data)
-
-    let followersCount = data['followers']
-    let followersInfo = `I have been followed by ${followersCount} people on GitHub.`
-    let total_repos = data['public_repos']
-
-    document.getElementById('profileImg').src = data['avatar_url']
-    document.getElementById('fullName').textContent = data['name']
-    document.getElementById('bio').textContent = data['bio']
-    document.getElementById('followers').textContent = followersInfo
-    document.getElementById('githubLink').href = data['html_url']
-    document.getElementById('num_of_repos').textContent = total_repos
-
-
-    // assignment start
-
-    // fishercoder1534 fabpot adhikaridev
-
-      var j = 1
-      var retrieved = 0;
-      var list = ""
-      var changingURL = "https://api.github.com/users/adhikaridev/repos"
-
-      myFunction(changingURL)
-
-      function myFunction(changingURL){
-        fetch(changingURL)
-        .then(response => response.json())
-        .then(function(dataRepo){
-          console.log(dataRepo)
-          for (var i = 0; i < dataRepo.length; i++) {
-            list = list + dataRepo[i]['name'] + "<br>"
-          }
-          retrieved = retrieved + dataRepo.length
-          if (retrieved < total_repos) {
-            j = j + 1
-            changingURL = changingURL + `?page=${j}`
-            myFunction(changingURL)
-          }else {
-            document.getElementById('repositories').innerHTML = list
-          }
-
-          })
-      }
-      // new end
-      // assignment end
-    document.getElementById('mainContainer').hidden = false
-    document.getElementById('loading').hidden = true
-
-
-  })
-</script>
+  <body class="main">
+    <iframe src="https://nepalicalendar.rat32.com/addons/nepali-calendar-aja-ko-din.php" scrolling="no" marginwidth="0" marginheight="1" style="border:5px; overflow: visible; width:250px; height:230px;" allowtransparency="true"></iframe>
   </body>
 </html>
